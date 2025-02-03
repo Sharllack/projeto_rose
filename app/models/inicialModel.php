@@ -49,18 +49,25 @@ class inicialModel
 
     public function getEntregasPeriodo($data)
     {
-        $cmd = $this->con->prepare('
-            SELECT entregas.*, funcionarios.*, entregas.id AS id_entregas 
-            FROM entregas 
-            JOIN funcionarios ON entregas.id_funcionario = funcionarios.id
-            WHERE data_entrega BETWEEN :dataInicio AND :dataFim
-            ORDER BY funcionarios.nome
-        ');
+        $pagina = isset($data['pag']) && is_numeric($data['pag']) ? (int)$data['pag'] : 1;
+        $limite = 9;
+        $inicio = max(($pagina * $limite) - $limite, 0);
 
-        $cmd->execute([
-            ':dataInicio' => $data['dataInicio'],
-            ':dataFim' => $data['dataFim']
-        ]);
+        $cmd = $this->con->prepare("
+        SELECT entregas.*, funcionarios.*, entregas.id AS id_entregas 
+        FROM entregas 
+        JOIN funcionarios ON entregas.id_funcionario = funcionarios.id
+        WHERE data_entrega BETWEEN :dataInicio AND :dataFim
+        ORDER BY entregas.data_entrega
+        LIMIT :inicio, :limite
+    ");
+
+        $cmd->bindValue(':dataInicio', $data['dataInicio']);
+        $cmd->bindValue(':dataFim', $data['dataFim']);
+        $cmd->bindValue(':inicio', $inicio, PDO::PARAM_INT);
+        $cmd->bindValue(':limite', $limite, PDO::PARAM_INT);
+
+        $cmd->execute();
 
         return $cmd->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -132,7 +139,7 @@ class inicialModel
             FROM entregas
             JOIN funcionarios ON entregas.id_funcionario = funcionarios.id
             WHERE data_entrega BETWEEN :dataInicio AND :dataFim
-            GROUP BY entregas.data_entrega
+            GROUP BY entregas.id
         ");
 
         $cmd->execute([

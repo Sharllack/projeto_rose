@@ -13,10 +13,10 @@ header {
   z-index: 99999;
   position: absolute;
   width: 100%;
+  box-shadow: 0px 10px 10px rgb(0, 0, 0, 0.7);
 }
 
 main {
-  box-shadow: inset 0 8px 10px rgba(0, 0, 0, 0.39);
   background-image: url("../../assets/image/fundo_site_filtro.jpeg");
   background-size: cover;
   background-repeat: no-repeat;

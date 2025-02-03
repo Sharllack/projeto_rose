@@ -687,7 +687,28 @@ function editarEntregaEditada() {
   }
 }
 
-function filtrarPorPeriodo() {
+function aumentarPagPeriodo() {
+  let pag = $(".pag").val();
+  pag++;
+  $(".pag").val(pag);
+  filtrarPorPeriodo(pag);
+}
+
+function diminuirPagPeriodo() {
+  let pag = $(".pag").val();
+  if (pag > 1) {
+    pag--;
+    filtrarPorPeriodo(pag);
+  } else {
+    pag;
+    filtrarPorPeriodo(pag);
+  }
+  $(".pag").val(pag);
+}
+
+function filtrarPorPeriodo(pag) {
+  pag = parseInt(pag) || 1; // Garante que sempre seja um número válido
+  $(".pag").val(pag);
   $("#financeiro_cadastrado").empty();
   $("#total_financeiro").empty();
   const dataInicio = document.getElementById("dataInicio").value;
@@ -709,6 +730,7 @@ function filtrarPorPeriodo() {
     data: {
       dataInicio: dataInicio,
       dataFim: dataFim,
+      pag: pag,
     },
     dataType: "json",
     success: function (dados) {
@@ -932,62 +954,46 @@ function filtrarPorPeriodo() {
   $.ajax({
     url: "inicial/getEntregasIndividuais",
     type: "POST",
-    data: {
-      dataInicio: dataInicio,
-      dataFim: dataFim,
-    },
+    data: { dataInicio, dataFim },
     dataType: "json",
     success: function (dados) {
       console.log(dados);
 
-      $("#container_graficos").empty(); // Remove gráficos antigos
+      $("#container_graficos").empty(); // Limpa os gráficos antigos
 
-      // Objeto para agrupar os dados por funcionário
-      let entregasPorFuncionario = {};
-
-      dados.forEach((dado) => {
-        if (!entregasPorFuncionario[dado.nome]) {
-          entregasPorFuncionario[dado.nome] = {
-            datas: [],
-            entregas: [],
-          };
+      // Agrupar dados por usuário
+      const usuarios = {};
+      dados.forEach((financas) => {
+        if (!usuarios[financas.nome]) {
+          usuarios[financas.nome] = [];
         }
-
-        entregasPorFuncionario[dado.nome].datas.push(dado.data_entrega);
-        entregasPorFuncionario[dado.nome].entregas.push(
-          dado.quantidade_entregas
-        );
+        usuarios[financas.nome].push(financas);
       });
 
-      // Agora, cria um gráfico para cada funcionário
-      Object.keys(entregasPorFuncionario).forEach((nomeFuncionario, index) => {
-        const canvasId = `grafico_entregas_${index}`;
-        $("#container_graficos").append(
-          `<canvas id="${canvasId}" class="entregas"></canvas>`
-        );
+      Object.keys(usuarios).forEach((nome) => {
+        const idCanvas = `grafico_${nome.replace(/\s+/g, "_")}`; // Evita problemas com espaços
+        $("#container_graficos").append(`<canvas id="${idCanvas}"></canvas>`);
 
-        const ctx = document.getElementById(canvasId).getContext("2d");
+        const ctx = document.getElementById(idCanvas).getContext("2d");
 
         new Chart(ctx, {
           type: "bar",
           data: {
-            labels: entregasPorFuncionario[nomeFuncionario].datas, // Agora é um array de datas!
+            labels: usuarios[nome].map((financas) => financas.data_entrega),
             datasets: [
               {
-                label: `Entregas de ${nomeFuncionario}`,
-                data: entregasPorFuncionario[nomeFuncionario].entregas, // Agora é um array de quantidades!
-                backgroundColor: gerarListaCores(
-                  entregasPorFuncionario[nomeFuncionario].entregas.length
+                label: `Entregas de ${nome}`,
+                data: usuarios[nome].map(
+                  (financas) => financas.quantidade_entregas
                 ),
+                backgroundColor: gerarListaCores(usuarios[nome].length),
                 borderWidth: 1,
               },
             ],
           },
           options: {
             scales: {
-              y: {
-                beginAtZero: true,
-              },
+              y: { beginAtZero: true },
             },
           },
         });
@@ -1003,4 +1009,5 @@ function filtrarPorPeriodo() {
 
 // Dados a serem carregados ao abrir a página
 getFuncionarios($(".pag").val());
+filtrarPorPeriodo($(".pag").val());
 getFuncionariosCadastrados();

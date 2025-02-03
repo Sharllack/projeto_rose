@@ -86,6 +86,11 @@
             <div id="financeiro_cadastrado">
 
             </div>
+            <div class="paginacao">
+                <button type="button" onclick="diminuirPagPeriodo()">Anterior</button>
+                <input type="number" name="pag" class="pag" readonly value="1">
+                <button type="button" onclick="aumentarPagPeriodo()">Próximo</button>
+            </div>
             <h2 style="margin-top: 20px; text-align:center;">Total Período</h2>
             <div id="total_financeiro">
 

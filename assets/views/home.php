@@ -11,8 +11,8 @@
 <body>
     <div id="log">
         <h1>Seja bem-vindo(a)</h1>
-        <input type="text" name="login" id="login" class="inputs_principais">
-        <input type="password" name="senha" id="senha" class="inputs_principais">
+        <input type="text" name="login" id="login" class="inputs_principais" placeholder="Usuário">
+        <input type="password" name="senha" id="senha" class="inputs_principais" placeholder="Senha">
         <p id="res_login"></p>
         <button onclick="login()">Entrar</button>
     </div>
