@@ -1,0 +1,486 @@
+#logout {
+  position: absolute;
+  z-index: 99999;
+  right: 22px;
+  top: 12px;
+  background-color: rgb(187, 0, 0);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#logout:hover {
+  scale: 1.02;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.418);
+}
+
+.opcoes {
+  animation: appear 0.7s linear;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes appear {
+  0% {
+    transform: translate(0, -200%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+.opcoes img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.4);
+}
+
+#options {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  place-items: center;
+}
+
+.topicos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  font-size: 1.8em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.topicos:hover {
+  font-size: 2em;
+}
+
+#fundo_janelas {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 9999999;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.janelas {
+  padding: 10px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.418);
+  border-radius: 10px;
+}
+
+.janelas h1 {
+  text-align: center;
+}
+
+.icons {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  position: relative;
+}
+
+.topo_janelas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+#janela_cadastrar_entregas,
+#janela_editar_entregas {
+  background-color: white;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.418);
+  border-radius: 10px;
+}
+
+#janela_cadastrar_entregas select,
+#janela_cadastrar_entregas input,
+#janela_editar_entregas select,
+#janela_editar_entregas input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #00003f23;
+  border-bottom: 2px solid lightgray;
+  transition: 0.5s;
+}
+
+#janela_cadastrar_entregas select:focus,
+#janela_cadastrar_entregas select:focus,
+#janela_editar_entregas select:focus,
+#janela_editar_entregas select:focus {
+  border-bottom: 2px solid #00003f;
+}
+
+#janela_cadastrar_entregas button,
+#janela_editar_entregas button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #00003f;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+  color: white;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#janela_cadastrar_entregas button:hover,
+#janela_editar_entregas button:hover {
+  scale: 1.02;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.418);
+}
+
+#topo_cadastrar_entregas,
+#topo_editar_entregas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#topo_cadastrar_entregas img,
+#topo_editar_entregas img {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+#janela_financeiro {
+  display: none;
+  flex-direction: column;
+}
+
+#janela_financeiro h1 {
+  width: 100%;
+  margin-left: -50px;
+  text-align: center;
+}
+
+#financeiro_cadastrado,
+#total_financeiro {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 10px;
+}
+
+.valor_total_entregas {
+  display: block;
+  float: right;
+}
+
+#filtro {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.datas_filtro {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #00003f23;
+  border-bottom: 2px solid lightgray;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.datas_filtro:focus {
+  border-bottom: 2px solid #00003f;
+}
+
+#filtro_final {
+  margin-left: 10px;
+}
+
+#btnFil {
+  margin-left: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #00003f;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+  color: white;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#btnFil:hover {
+  scale: 1.02;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.418);
+}
+
+#total_financeiro {
+  margin-top: 10px;
+}
+
+#periodo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#grafico_geral {
+  margin: auto;
+  height: 40%;
+  width: 40%;
+}
+
+#container_graficos {
+  width: 90%;
+  margin: auto;
+}
+
+#dados_entregas_funcionarios {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#pesquisar,
+#pesquisar_financa {
+  outline: none;
+  background-color: #00003f23;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  border-bottom: 2px solid lightgray;
+  transition: 0.5s;
+  margin-bottom: 10px;
+}
+
+#pesquisar:focus,
+#pesquisar_financa:focus {
+  border-bottom: 2px solid #00003f;
+}
+
+#janela_cadastrar_funcionario,
+#janela_editar_funcionario {
+  background-color: white;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.418);
+  border-radius: 10px;
+}
+
+#janela_cadastrar_funcionario input,
+#janela_cadastrar_funcionario select,
+#janela_editar_funcionario input,
+#janela_editar_funcionario select {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #00003f23;
+  border-bottom: 2px solid lightgray;
+  transition: 0.5s;
+}
+
+#janela_cadastrar_funcionario input:focus,
+#janela_cadastrar_funcionario select:focus,
+#janela_editar_funcionario input:focus,
+#janela_editar_funcionario select:focus {
+  border-bottom: 2px solid #00003f;
+}
+
+#janela_cadastrar_funcionario button,
+#janela_editar_funcionario button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #00003f;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+  color: white;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#janela_cadastrar_funcionario button:hover,
+#janela_editar_funcionario button:hover {
+  scale: 1.02;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.418);
+}
+
+#topo_cadastrar_funcionarios,
+#topo_editar_funcionarios {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#topo_cadastrar_funcionarios img,
+#topo_editar_funcionarios img {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+#janela_funcionario,
+#janela_financeiro {
+  display: none;
+  max-height: 90%;
+  overflow-x: scroll;
+}
+
+#funcionarios_cadastrados {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 10px;
+}
+
+#cartao_funcionario,
+.cartao_financeiro {
+  width: 400px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.418);
+  border: 1px solid rgb(231, 231, 231);
+}
+
+#cartao_funcionario h2,
+.cartao_financeiro h2 {
+  text-align: center;
+  font-size: 1em;
+}
+
+#editar_entregas {
+  background-color: #00003f;
+  width: 100%;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#editar_entregas:hover {
+  scale: 1.02;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.418);
+}
+
+#salario,
+#salario_editar {
+  display: none;
+}
+
+#botoes_funcionarios {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#botoes_funcionarios button {
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: #00003f;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+  color: white;
+  cursor: pointer;
+  transition: 0.5s;
+  margin-bottom: 10px;
+}
+
+#botoes_funcionarios button:hover {
+  scale: 1.02;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.418);
+}
+
+hr {
+  margin: 10px 0;
+}
+
+.pag {
+  width: 20px;
+  border: none;
+  text-align: center;
+  outline: none;
+  cursor: default;
+}
+
+.paginacao {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.paginacao button {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #00003f;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+  transition: 0.3s;
+}
+
+.paginacao button:hover {
+  scale: 1.02;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+}
+
+.pag {
+  font-size: 1.5em;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}

@@ -1,0 +1,21 @@
+#not_found {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+}
+
+#not_found h1 {
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+  font-size: 5em;
+}
+
+#not_found p {
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+  font-size: 3em;
+}

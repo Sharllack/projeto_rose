@@ -1,0 +1,79 @@
+#log {
+  background-color: white;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.418);
+  animation: appear 0.7s linear;
+}
+
+@keyframes appear {
+  0% {
+    transform: translate(-50%, -250%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+input {
+  margin-bottom: 10px;
+  outline: none;
+  background-color: #00003f23;
+}
+
+#login {
+  margin-top: 10px;
+}
+
+#res_login {
+  text-align: center;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.inputs_principais {
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  border-bottom: 2px solid lightgray;
+  padding: 10px;
+  transition: 0.5s;
+}
+
+.inputs_principais:focus {
+  border-bottom: 2px solid #00003f;
+}
+
+button {
+  padding: 10px;
+  width: 100%;
+  background-color: #00003f;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.418);
+}
+
+button:hover {
+  scale: 1.02;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.418);
+}
+
+#esqueceu:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
